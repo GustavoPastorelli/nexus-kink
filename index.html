@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#FF2E63" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+  <title>Nexus — Match, Desejos & Comunidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="device-wrapper">
+    <div class="phone-frame" id="phone-frame">
+      <!-- Barra de Status Nativa -->
+      <div class="ios-status-bar" id="ios-status-bar">
+        <span class="status-time">22:30</span>
+        <div class="dynamic-island"></div>
+        <div class="status-icons">
+          <span>5G</span>
+          <span>100%</span>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           TELA DE LOGIN / CADASTRO (CLEAN, DIRETA & COM VERIFICAÇÃO OBRIGATÓRIA)
+           ========================================================= -->
+      <div id="auth-screen" class="auth-screen">
+        <div class="auth-scroll-inner">
+          <div class="luxury-brand-hero">
+            <div class="modern-app-logo">
+              <svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="60" height="60" rx="20" fill="url(#tinderGrad)"/>
+                <path d="M22 44V20L42 44V20" stroke="white" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="32" cy="32" r="4" fill="#FFE4E6"/>
+                <defs>
+                  <linearGradient id="tinderGrad" x1="2" y1="2" x2="62" y2="62" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#FF2E63"/>
+                    <stop offset="0.55" stop-color="#E11D48"/>
+                    <stop offset="1" stop-color="#7C3AED"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <h1 class="luxury-title">nexus</h1>
+            <span class="luxury-subtitle">Match • Desejos • Comunidade</span>
+          </div>
+
+          <div class="auth-tabs">
+            <button class="auth-tab active" id="auth-tab-login" onclick="window.app.setAuthMode('login')">Entrar</button>
+            <button class="auth-tab" id="auth-tab-register" onclick="window.app.setAuthMode('register')">Criar Conta</button>
+          </div>
+
+          <!-- ENTRAR -->
+          <div id="auth-login-panel" class="auth-card">
+            <label class="auth-label">E-mail ou Celular</label>
+            <input type="email" id="login-email" class="clean-input" value="" placeholder="seu@email.com" autocomplete="email" />
+
+            <label class="auth-label" style="margin-top:0.65rem;">Senha</label>
+            <input type="password" id="login-pass" class="clean-input" value="" placeholder="Sua senha secreta" autocomplete="current-password" />
+
+            <button class="btn-primary-clean full-width" style="margin-top:0.9rem; padding:0.8rem;" onclick="window.app.completeAuth('login')">
+              Entrar Agora →
+            </button>
+
+            <div class="auth-divider"><span>ou entrar com</span></div>
+
+            <button class="btn-google-auth full-width" onclick="window.app.loginWithGoogle()">
+              <svg width="18" height="18" viewBox="0 0 24 24" style="vertical-align:middle; margin-right:8px;"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+              <span>Continuar com o Google</span>
+            </button>
+          </div>
+
+          <!-- CRIAR CONTA (VERIFICAÇÃO DE ROSTO + 2 FOTOS) -->
+          <div id="auth-register-panel" class="auth-card hidden">
+            <label class="auth-label">Como quer ser chamado(a)?</label>
+            <input type="text" id="reg-name" class="clean-input" placeholder="Seu nome ou apelido" autocomplete="nickname" />
+
+            <div style="display:flex; gap:0.4rem; margin-top:0.55rem;">
+              <div style="flex:1;">
+                <label class="auth-label">E-mail</label>
+                <input type="email" id="reg-email" class="clean-input" placeholder="seu@email.com" autocomplete="email" />
+              </div>
+              <div style="flex:1;">
+                <label class="auth-label">Senha</label>
+                <input type="password" id="reg-pass" class="clean-input" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
+              </div>
+            </div>
+
+            <div style="display:flex; gap:0.4rem; margin-top:0.55rem;">
+              <div style="flex:1;">
+                <label class="auth-label">Idade (+18)</label>
+                <input type="number" id="reg-age" class="clean-input" placeholder="Ex: 25" min="18" max="99" />
+              </div>
+              <div style="flex:1.2;">
+                <label class="auth-label">Pronomes</label>
+                <select id="reg-pronouns" class="clean-input" style="padding:0.55rem;">
+                  <option value="Ele/Dele">Ele/Dele</option>
+                  <option value="Ela/Dela">Ela/Dela</option>
+                  <option value="Delu/Deles">Delu/Deles</option>
+                  <option value="Casal">Casal</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:0.4rem; margin-top:0.55rem;">
+              <div style="flex:1.3;">
+                <label class="auth-label">Relacionamento</label>
+                <select id="reg-relationship" class="clean-input" style="padding:0.55rem;">
+                  <option value="Solteiro(a)">Solteiro(a)</option>
+                  <option value="Casado(a)">Casado(a)</option>
+                  <option value="Namorando">Namorando</option>
+                  <option value="Relacionamento Aberto">Relacionamento Aberto</option>
+                  <option value="Casal Liberal">Casal Liberal</option>
+                  <option value="Poliamor">Poliamor</option>
+                  <option value="Divorciado(a)">Divorciado(a)</option>
+                  <option value="Amizade Colorida">Amizade Colorida</option>
+                  <option value="Só Encontros">Só Encontros</option>
+                  <option value="Trisal">Trisal</option>
+                </select>
+              </div>
+              <div style="flex:1;">
+                <label class="auth-label">Papel Principal</label>
+                <select id="reg-role" class="clean-input" style="padding:0.55rem;">
+                  <option value="Dom">Dom</option>
+                  <option value="Master">Master</option>
+                  <option value="Mistress">Mistress</option>
+                  <option value="Switch" selected>Switch</option>
+                  <option value="Rigger">Rigger</option>
+                  <option value="Primal">Primal</option>
+                  <option value="Sub">Sub</option>
+                  <option value="Bottom">Bottom</option>
+                  <option value="Brat">Brat</option>
+                  <option value="Casal">Casal</option>
+                  <option value="Liberal">Liberal</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="margin-top:0.55rem;">
+              <label class="auth-label">Sobre Você / Bio</label>
+              <textarea id="reg-bio" class="clean-textarea" rows="2" placeholder="Descreva seus interesses, estilo e dinâmica com respeito e consentimento..."></textarea>
+            </div>
+
+            <!-- 2 FOTOS OBRIGATÓRIAS -->
+            <div class="photo-rules-box" style="margin-top:0.65rem;">
+              <strong>📸 1. Suas 2 Fotos Obrigatórias</strong>
+              <p style="font-size:0.72rem; color:var(--text-secondary); margin:0.2rem 0 0.4rem;">
+                A 1ª foto DEVE ser de rosto (usada na verificação biométrica).
+              </p>
+              <input type="file" id="reg-file-input-1" accept="image/*" class="hidden" onchange="window.app.handleRegPhotoUpload(1, this)" />
+              <input type="file" id="reg-file-input-2" accept="image/*" class="hidden" onchange="window.app.handleRegPhotoUpload(2, this)" />
+
+              <div class="reg-photos-grid">
+                <div class="reg-photo-slot empty-slot" id="reg-slot-1" onclick="document.getElementById('reg-file-input-1').click()">
+                  <div class="empty-slot-content" id="reg-slot-1-empty">
+                    <span style="font-size:1.8rem; display:block; margin-bottom:0.2rem;">🤳</span>
+                    <strong style="font-size:0.75rem; color:var(--accent-rose);">+ Foto de Rosto</strong>
+                    <span style="font-size:0.68rem; color:var(--text-muted); display:block;">Obrigatória</span>
+                  </div>
+                  <img id="reg-photo-1-img" class="hidden" alt="Foto 1" />
+                  <span class="slot-badge-top hidden" id="slot-1-badge-top">1ª • ROSTO</span>
+                  <span class="slot-badge-bottom hidden" id="slot-1-badge-bottom">📷 Toque p/ Mudar</span>
+                </div>
+
+                <div class="reg-photo-slot empty-slot" id="reg-slot-2" onclick="document.getElementById('reg-file-input-2').click()">
+                  <div class="empty-slot-content" id="reg-slot-2-empty">
+                    <span style="font-size:1.8rem; display:block; margin-bottom:0.2rem;">🖼️</span>
+                    <strong style="font-size:0.75rem; color:var(--accent-violet);">+ 2ª Foto</strong>
+                    <span style="font-size:0.68rem; color:var(--text-muted); display:block;">Galeria / Estilo</span>
+                  </div>
+                  <img id="reg-photo-2-img" class="hidden" alt="Foto 2" />
+                  <span class="slot-badge-top hidden" id="slot-2-badge-top">2ª • GALERIA</span>
+                  <span class="slot-badge-bottom hidden" id="slot-2-badge-bottom">📷 Toque p/ Mudar</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- VERIFICAÇÃO BIOMÉTRICA OBRIGATÓRIA -->
+            <div class="photo-rules-box" id="reg-verification-box" style="margin-top:0.65rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                <strong>🪪 2. Verificação de Rosto & RG</strong>
+                <span id="reg-verification-pill" class="status-pill-pending">⛔ Pendente</span>
+              </div>
+              <p id="reg-verification-desc" style="margin:0 0 0.5rem 0; font-size:0.75rem; color:var(--text-secondary);">
+                O motor inteligente analisa seu RG e sua selfie facial 3D e aprova automaticamente em segundos!
+              </p>
+
+              <div style="margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem;">
+                <input type="checkbox" id="reg-simulate-doubt" style="cursor:pointer;" />
+                <label for="reg-simulate-doubt" style="font-size:0.72rem; color:var(--text-muted); cursor:pointer;">
+                  Simular falha biométrica para testar envio à fila humana do Admin
+                </label>
+              </div>
+
+              <button class="btn-primary-clean full-width btn-sm" id="open-id-modal-btn" onclick="window.app.openIdentityVerificationModal()">
+                🤳 Abrir Verificação Biométrica Automática
+              </button>
+            </div>
+
+            <button
+              id="btn-submit-register"
+              class="btn-primary-clean full-width locked-register-btn"
+              style="margin-top:0.8rem; padding:0.85rem; font-weight:800;"
+              onclick="window.app.completeAuth('register')"
+            >
+              🔒 Verifique sua Biometria Acima p/ Ativar Conta
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- HEADER SUPER CLEAN (ESTILO TINDER / BADOO) -->
+      <header class="mobile-header" id="mobile-header">
+        <div class="brand-group" onclick="window.app.switchTab('discover')" style="cursor:pointer;">
+          <div class="nexus-crest-mini">
+            <svg width="30" height="30" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#hdrGrad)"/>
+              <path d="M21 44V20L43 44V20" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="hdrGrad" x1="2" y1="2" x2="62" y2="62" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#FF2E63"/>
+                  <stop offset="1" stop-color="#7C3AED"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="brand-titles-wrap">
+            <span class="brand-wordmark">nexus</span>
+            <span class="plan-pill-header" id="header-plan-badge" onclick="event.stopPropagation(); window.app.openUpgradeSheet()">PLUS</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="header-pill-btn" onclick="window.app.openLabelsSheet('filter')">
+            <span>⚡</span>
+            <span id="header-filter-summary">Filtros</span>
+          </button>
+          <button class="header-icon-btn" title="Modo Noturno" onclick="window.app.toggleTheme()" id="theme-toggle-btn">☾</button>
+          <button class="header-icon-btn" title="Esconder Tela" onclick="window.app.togglePrivacyLock(true)">🔒</button>
+        </div>
+      </header>
+
+      <!-- VIEWPORT PRINCIPAL -->
+      <main class="mobile-viewport" id="mobile-viewport">
+
+        <!-- =========================================================
+             ABA 1: DESCOBRIR (CLEAN, DIRETO, FOTOS GRANDES + GESTOS)
+             ========================================================= -->
+        <section id="tab-discover" class="app-screen discover-screen active">
+          <div class="discover-top-strip">
+            <div class="quota-pills" onclick="window.app.openUpgradeSheet()">
+              <span class="quota-pill">♥ <strong id="quota-likes">20</strong></span>
+              <span class="quota-pill star">⭐ <strong id="quota-stars">5</strong></span>
+              <span class="quota-pill superstar">🌟 <strong id="quota-superstars">1</strong></span>
+            </div>
+            <div class="discover-quick-btns">
+              <button class="mini-pill-btn" onclick="window.app.toggleAISearchDrawer()">✦ Busca IA</button>
+              <button class="mini-pill-btn" onclick="window.app.openLabelsSheet('filter')">📍 <span id="distance-label-inline">25</span>km</button>
+            </div>
+          </div>
+
+          <!-- Busca por Desejo IA -->
+          <div id="ai-search-drawer" class="ai-search-drawer hidden">
+            <div class="search-bar-pill">
+              <span class="search-sparkle">✦</span>
+              <input
+                type="text"
+                id="ai-desire-input"
+                placeholder="Digite o que você curte (ex: Dom, Shibari, Trample)..."
+                oninput="window.app.handleAISearchInput(this.value)"
+                onkeydown="if(event.key==='Enter') window.app.runAISearch()"
+              />
+              <button id="clear-ai-btn" class="clear-search-btn" onclick="window.app.clearAISearch()" style="display:none;">✕</button>
+              <button class="search-go-btn" onclick="window.app.runAISearch()">Ir</button>
+            </div>
+            <div class="intent-suggestions-scroll" id="quick-intent-chips"></div>
+            <div id="ai-search-insight" class="ai-insight-banner hidden"></div>
+          </div>
+
+          <div id="active-filters-bar" class="active-filters-bar hidden"></div>
+
+          <!-- Perfil Único Rolável -->
+          <div id="discover-profile-scroll" class="discover-profile-scroll">
+            <div id="discover-swipe-container" class="single-profile-wrapper"></div>
+          </div>
+
+          <!-- Botões Flutuantes Fixos Embaixo (✕, ⭐, 🌟, ♥) -->
+          <div class="floating-action-dock" id="floating-action-dock">
+            <button class="dock-btn pass" onclick="window.app.triggerSwipeAction('pass')" title="Passar">
+              <span class="dock-icon">✕</span>
+            </button>
+            <button class="dock-btn star" onclick="window.app.triggerSwipeAction('star')" title="Estrela (1º da fila)">
+              <span class="dock-icon">⭐</span>
+              <span class="dock-badge" id="dock-star-count">5</span>
+            </button>
+            <button class="dock-btn superstar" onclick="window.app.triggerSwipeAction('superstar')" title="Superestrela (Mensagem Direta)">
+              <span class="dock-icon">🌟</span>
+              <span class="dock-badge" id="dock-superstar-count">1</span>
+            </button>
+            <button class="dock-btn like" onclick="window.app.triggerSwipeAction('like')" title="Curtir">
+              <span class="dock-icon">♥</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             ABA 2: REELS (SCROLL VERTICAL + SWIPE + BOTÕES ▲/▼ FUNCIONANDO 100%)
+             ========================================================= -->
+        <section id="tab-reels" class="app-screen reels-screen hidden">
+          <div class="reels-top-overlay">
+            <span class="reels-header-title">Reels</span>
+            <div style="display:flex; gap:0.4rem; pointer-events:auto;">
+              <span class="reels-counter-pill" id="reels-counter-pill">1 / 4</span>
+              <button class="reels-create-pill" onclick="window.app.openCreateReelModal()">+ Publicar</button>
+            </div>
+          </div>
+
+          <!-- Botões Rápidos de Subir / Descer Reel (além do scroll do mouse e dedo) -->
+          <div class="reels-nav-arrows">
+            <button class="reel-step-btn" onclick="window.app.stepReel(-1)" title="Reel Anterior">▲</button>
+            <button class="reel-step-btn" onclick="window.app.stepReel(1)" title="Próximo Reel">▼</button>
+          </div>
+
+          <div id="reels-feed" class="insta-reels-container"></div>
+        </section>
+
+        <!-- =========================================================
+             ABA 3: STORIES & COMUNIDADE (ESTILO FETLIFE + INSTA CLEAN)
+             ========================================================= -->
+        <section id="tab-community" class="app-screen community-screen hidden">
+          <div class="screen-padding">
+            <div class="screen-title-row">
+              <div>
+                <h2>Stories & Comunidade</h2>
+                <p>Fotos 24h, grupos e encontros</p>
+              </div>
+              <button class="btn-primary-clean btn-sm" onclick="window.app.openCreateStoryModal()">📸 + Story</button>
+            </div>
+
+            <div class="section-label">Stories 24h (Toque p/ abrir e deslize p/ os lados)</div>
+            <div id="stories-strip" class="stories-dedicated-grid"></div>
+
+            <div class="section-label" style="margin-top:0.95rem;">Grupos & Eventos</div>
+            <div id="groups-list" class="groups-horizontal-scroll"></div>
+
+            <!-- Caixa de Post Rápido -->
+            <div class="clean-card" style="margin: 0.85rem 0;">
+              <textarea id="community-post-input" class="clean-textarea" rows="2" placeholder="O que está rolando hoje? Compartilhe texto, foto ou vídeo..."></textarea>
+
+              <div id="community-media-preview-box" class="media-preview-box hidden">
+                <img id="community-media-preview-img" src="" alt="Preview" />
+                <button class="remove-media-btn" onclick="window.app.clearCommunityPostMedia()">✕ Remover</button>
+              </div>
+
+              <input type="file" id="community-file-input" accept="image/*,video/*" class="hidden" onchange="window.app.handleCommunityMediaSelect(this)" />
+
+              <div class="post-actions-bar">
+                <div style="display:flex; gap:0.35rem; align-items:center;">
+                  <button class="btn-soft btn-sm" onclick="document.getElementById('community-file-input').click()">📷 Foto/Vídeo</button>
+                  <select id="community-post-group" class="clean-select-sm" style="width:auto;">
+                    <option value="Geral">Geral</option>
+                    <option value="Shibari & Arte">Shibari & Arte</option>
+                    <option value="Encontros SP">Encontros SP</option>
+                    <option value="Iniciantes">Iniciantes</option>
+                  </select>
+                </div>
+                <button class="btn-primary-clean btn-sm" onclick="window.app.publishCommunityPost()">Publicar</button>
+              </div>
+            </div>
+
+            <div class="section-label">Feed da Comunidade</div>
+            <div id="community-feed" class="mobile-posts-list"></div>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             ABA 4: CHAT ESTILO WHATSAPP
+             ========================================================= -->
+        <section id="tab-messages" class="app-screen messages-screen hidden">
+          <div id="whatsapp-list-view" class="whatsapp-list-view">
+            <div class="wa-list-header">
+              <h2>Conversas</h2>
+              <span class="wa-security-pill">🔒 Só Matches</span>
+            </div>
+
+            <div class="wa-search-wrap">
+              <input
+                type="text"
+                id="wa-search-input"
+                class="clean-input"
+                placeholder="🔍 Buscar conversa..."
+                oninput="window.app.renderChats()"
+              />
+            </div>
+
+            <div id="wa-stars-section" class="wa-stars-section">
+              <div class="section-label">⭐ Deram Estrela em Você (1º da Fila)</div>
+              <div id="received-stars-list" class="received-stars-strip"></div>
+            </div>
+
+            <div class="section-label" style="margin-top:0.65rem;">Seus Matches</div>
+            <div id="whatsapp-threads-container" class="wa-threads-list"></div>
+          </div>
+
+          <div id="whatsapp-room-view" class="whatsapp-room-view hidden">
+            <div id="wa-room-header" class="wa-room-header"></div>
+            <div id="wa-room-banner" class="wa-room-banner"></div>
+            <div id="chat-messages-area" class="wa-messages-area"></div>
+
+            <input type="file" id="chat-photo-input" accept="image/*" class="hidden" onchange="window.app.sendPhotoInChat(this)" />
+
+            <div class="wa-input-bar">
+              <button class="chat-tool-btn" title="Enviar Foto" onclick="document.getElementById('chat-photo-input').click()">📷</button>
+              <button class="chat-tool-btn" title="Enviar Meus Gostos" onclick="window.app.sendChecklistInChat()">🏷️</button>
+              <button class="chat-tool-btn" title="Ver Fotos Privadas" onclick="window.app.openActiveChatContactProfile()">🔓</button>
+              <input
+                type="text"
+                id="chat-message-input"
+                placeholder="Mensagem..."
+                onkeydown="if(event.key==='Enter') window.app.sendMessage()"
+              />
+              <button class="chat-send-btn" onclick="window.app.sendMessage()">➤</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             ABA 5: MEU PERFIL (CLEAN, MODERNO & FÁCIL DE USAR)
+             ========================================================= -->
+        <section id="tab-profile" class="app-screen profile-screen hidden">
+          <div class="screen-padding">
+            <!-- 1. HERO DO PERFIL (AVATAR + CÂMERA + BIO) -->
+            <div class="clean-card profile-hero-card">
+              <div class="profile-hero-center">
+                <div class="profile-avatar-large-wrap">
+                  <img id="my-main-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='%23666'><circle cx='12' cy='8' r='4'/><path d='M12 14c-6.1 0-8 4-8 4v2h16v-2s-1.9-4-8-4z'/></svg>" class="my-avatar-img" alt="Minha Foto" />
+                  <span class="profile-avatar-check" id="profile-id-status-badge">✓ Verificado</span>
+                </div>
+                <h2 id="profile-display-name" style="font-size:1.35rem; font-weight:800; margin:0.4rem 0 0.1rem;">Meu Perfil</h2>
+                <p id="profile-display-city" style="font-size:0.75rem; color:var(--text-secondary); margin:0;">📍 Localização</p>
+
+                <!-- Botões de Trocar Foto Principal com Câmera ou Galeria -->
+                <div style="display:flex; gap:0.45rem; margin-top:0.7rem; width:100%;">
+                  <button class="btn-soft full-width btn-sm" onclick="document.getElementById('profile-camera-avatar-input').click()">
+                    📷 Tirar Foto (Câmera)
+                  </button>
+                  <button class="btn-soft full-width btn-sm" onclick="document.getElementById('profile-gallery-avatar-input').click()">
+                    🖼️ Galeria
+                  </button>
+                </div>
+                <input type="file" id="profile-camera-avatar-input" accept="image/*" capture="user" class="hidden" onchange="window.app.uploadCameraAvatar(this)" />
+                <input type="file" id="profile-gallery-avatar-input" accept="image/*" class="hidden" onchange="window.app.uploadGalleryAvatar(this)" />
+              </div>
+
+              <div style="margin-top:0.85rem; border-top:1px solid var(--border-clean); padding-top:0.75rem;">
+                <label class="auth-label">Nome de Exibição</label>
+                <input type="text" id="my-profile-name" class="clean-input" placeholder="Seu nome ou apelido" />
+
+                <label class="auth-label" style="margin-top:0.55rem;">Sua Bio & O que Busca</label>
+                <textarea id="my-profile-bio" class="clean-textarea" rows="2" placeholder="Descreva seus interesses, estilo e dinâmica..."></textarea>
+
+                <div style="display:flex; gap:0.45rem; margin-top:0.6rem;">
+                  <button class="btn-primary-clean full-width" onclick="window.app.saveMyProfile()">Salvar Perfil</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. CARD DE ASSINATURA & UPGRADE (CLEAN: SÓ STATUS + BOTÃO) -->
+            <div class="clean-card" style="margin-top:0.75rem; background:linear-gradient(135deg, rgba(255,46,99,0.12), rgba(124,58,237,0.12)); border:1px solid rgba(255,46,99,0.32);">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:0.6rem;">
+                <div>
+                  <span style="font-size:0.66rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-secondary); font-weight:800;">Sua Assinatura</span>
+                  <h3 id="profile-sub-badge" style="margin:0.15rem 0; font-size:1.15rem; color:var(--accent-rose); font-weight:800;">Nexus Gratuito</h3>
+                  <p id="profile-sub-desc" style="font-size:0.74rem; color:var(--text-secondary); margin:0;">Plano Básico • Explore desejos e comunidade</p>
+                </div>
+                <button class="btn-primary-clean btn-sm" style="white-space:nowrap; padding:0.55rem 0.85rem;" onclick="window.app.openUpgradeSheet()">
+                  ⭐ Planos & Upgrade
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. FOTOS DA GALERIA (PÚBLICAS) -->
+            <div class="clean-card" style="margin-top:0.75rem;">
+              <div class="card-header-clean">
+                <div>
+                  <h3>📸 Minhas Fotos (Públicas)</h3>
+                  <p>Mínimo 2 fotos no perfil</p>
+                </div>
+                <div style="display:flex; gap:0.3rem;">
+                  <button class="btn-soft btn-sm" onclick="document.getElementById('profile-camera-public-input').click()">📷 Câmera</button>
+                  <button class="btn-soft btn-sm" onclick="document.getElementById('profile-public-photo-input').click()">🖼️ Galeria</button>
+                </div>
+              </div>
+              <input type="file" id="profile-camera-public-input" accept="image/*" capture="environment" class="hidden" onchange="window.app.uploadMyPublicPhoto(this)" />
+              <input type="file" id="profile-public-photo-input" accept="image/*" class="hidden" onchange="window.app.uploadMyPublicPhoto(this)" />
+              <div class="my-photos-manager-grid" id="my-public-photos-grid"></div>
+            </div>
+
+            <!-- 4. FOTOS PRIVADAS (COFRE SÓ PÓS-MATCH) -->
+            <div class="clean-card" style="margin-top:0.75rem;">
+              <div class="card-header-clean">
+                <div>
+                  <h3>🔒 Fotos Privadas (Cofre)</h3>
+                  <p>Liberadas só no chat com seus Matches</p>
+                </div>
+                <div style="display:flex; gap:0.3rem;">
+                  <button class="btn-soft btn-sm" onclick="document.getElementById('profile-camera-private-input').click()">📷 Câmera</button>
+                  <button class="btn-soft btn-sm" onclick="document.getElementById('profile-private-photo-input').click()">🖼️ Galeria</button>
+                </div>
+              </div>
+              <input type="file" id="profile-camera-private-input" accept="image/*" capture="environment" class="hidden" onchange="window.app.uploadMyPrivatePhoto(this)" />
+              <input type="file" id="profile-private-photo-input" accept="image/*" class="hidden" onchange="window.app.uploadMyPrivatePhoto(this)" />
+              <div class="my-photos-manager-grid" id="my-private-photos-grid"></div>
+            </div>
+
+            <!-- 4. STATUS DE RELACIONAMENTO -->
+            <div class="clean-card" style="margin-top:0.75rem;">
+              <div class="card-header-clean">
+                <div>
+                  <h3>💍 Status de Relacionamento</h3>
+                  <p>Solteiro(a), Casado(a), Namorando, Aberto, Casal...</p>
+                </div>
+              </div>
+              <div id="profile-my-relationship" class="chips-cloud"></div>
+            </div>
+
+            <!-- 5. MEU PAPEL -->
+            <div class="clean-card" style="margin-top:0.75rem;">
+              <div class="card-header-clean">
+                <div>
+                  <h3>🏷️ Meu Papel</h3>
+                  <p>Dom, Master, Switch, Sub, Rigger, Primal...</p>
+                </div>
+              </div>
+              <div id="profile-my-roles" class="chips-cloud"></div>
+            </div>
+
+            <!-- 6. MINHAS PRÁTICAS & GOSTOS (CATÁLOGO COMPLETO EQUILIBRADO) -->
+            <div class="clean-card" style="margin-top:0.75rem;">
+              <div class="card-header-clean">
+                <div>
+                  <h3>🔥 Práticas & Gostos BDSM</h3>
+                  <p>Dominação, Cordas, Disciplina, Impacto, Sensorial, Roleplay...</p>
+                </div>
+              </div>
+              <div id="profile-my-interests" class="chips-cloud"></div>
+              <div class="add-custom-row">
+                <input type="text" id="profile-custom-label-input" class="clean-input" placeholder="Adicionar outro gosto..." />
+                <button class="btn-primary-clean btn-sm" onclick="window.app.addCustomLabelFromProfile()">+ Criar</button>
+              </div>
+            </div>
+
+            <!-- 6. LIMITES -->
+            <div class="clean-card" style="margin-top:0.75rem;">
+              <div class="card-header-clean">
+                <div>
+                  <h3>🛡️ Meus Limites</h3>
+                  <p>O que topo e o que não faço</p>
+                </div>
+                <button class="btn-soft btn-sm" id="safecheck-btn" onclick="window.app.toggleSafeCheck()">SafeCheck</button>
+              </div>
+              <div id="boundaries-matrix" class="boundaries-clean-list"></div>
+            </div>
+
+            <!-- 7. CONFIGURAÇÕES DA CONTA & TROCAR CONTA -->
+            <div class="clean-card" style="margin-top:0.75rem; text-align:center;">
+              <button class="btn-soft full-width" style="color:var(--accent-rose); font-weight:700; padding:0.75rem;" onclick="window.app.logout()">
+                🚪 Sair / Cadastrar Outra Conta Real
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- BANNER FLUTUANTE DE INSTALAÇÃO (SÓ APARECE NO NAVEGADOR SE NÃO ESTIVER INSTALADO) -->
+      <div id="pwa-install-banner" class="pwa-install-banner hidden">
+        <div class="pwa-banner-content">
+          <span class="pwa-banner-icon">📲</span>
+          <div class="pwa-banner-text">
+            <strong>Instalar App Nexus</strong>
+            <span>Instale na tela inicial para acesso rápido</span>
+          </div>
+        </div>
+        <div class="pwa-banner-actions">
+          <button class="btn-primary-clean btn-sm" onclick="window.app.triggerNativeInstall()">Instalar</button>
+          <button class="pwa-banner-close" onclick="window.app.dismissInstallBanner()">✕</button>
+        </div>
+      </div>
+
+      <!-- NAVEGAÇÃO INFERIOR -->
+      <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+        <button class="tab-btn active" data-tab="discover" onclick="window.app.switchTab('discover')">
+          <span class="tab-icon">🔥</span>
+          <span class="tab-label">Descobrir</span>
+        </button>
+        <button class="tab-btn" data-tab="reels" onclick="window.app.switchTab('reels')">
+          <span class="tab-icon">🎬</span>
+          <span class="tab-label">Reels</span>
+        </button>
+        <button class="tab-btn" data-tab="community" onclick="window.app.switchTab('community')">
+          <span class="tab-icon">🌐</span>
+          <span class="tab-label">Comunidade</span>
+        </button>
+        <button class="tab-btn" data-tab="messages" onclick="window.app.switchTab('messages')">
+          <span class="tab-icon">💬</span>
+          <span class="tab-label">Chat</span>
+          <span class="tab-dot" id="chat-nav-dot"></span>
+        </button>
+        <button class="tab-btn" data-tab="profile" onclick="window.app.switchTab('profile')">
+          <span class="tab-icon">👤</span>
+          <span class="tab-label">Perfil</span>
+        </button>
+      </nav>
+
+      <div class="ios-home-indicator"></div>
+
+      <!-- =========================================================
+           MODAL 1: VERIFICAÇÃO BIOMÉTRICA & RG AUTOMÁTICA (IA)
+           ========================================================= -->
+      <div id="identity-verification-modal" class="sheet-overlay hidden" onclick="if(event.target===this) window.app.closeIdentityVerificationModal()">
+        <div class="bottom-sheet" style="max-height: 90vh;">
+          <div class="sheet-handle"></div>
+          <div class="sheet-header">
+            <div>
+              <h3>🪪 Verificação Biométrica Automática (IA)</h3>
+              <p>Validação instantânea de RG/CNH + Rosto com Selo Real ID</p>
+            </div>
+            <button class="sheet-close" onclick="window.app.closeIdentityVerificationModal()">✕</button>
+          </div>
+
+          <!-- INPUTS OCULTOS DE ARQUIVO -->
+          <input type="file" id="kyc-doc-input" accept="image/*" class="hidden" onchange="window.app.handleKycDocUpload(this)" />
+          <input type="file" id="kyc-selfie-input" accept="image/*" capture="user" class="hidden" onchange="window.app.handleKycSelfieUpload(this)" />
+
+          <div class="id-verification-steps">
+            <!-- PASSO 1: DOCUMENTO -->
+            <div class="id-step-card" id="id-step-doc">
+              <span class="id-step-num" id="kyc-doc-num-badge">1</span>
+              <div style="flex:1;">
+                <strong>Documento Oficial (+18)</strong>
+                <p id="id-doc-status-text">RG, CNH ou Passaporte</p>
+              </div>
+              <button class="btn-soft btn-sm" id="btn-step-doc" onclick="document.getElementById('kyc-doc-input').click()">
+                📄 Enviar RG/CNH
+              </button>
+            </div>
+
+            <!-- PASSO 2: SELFIE -->
+            <div class="id-step-card" id="id-step-biometrics">
+              <span class="id-step-num" id="kyc-bio-num-badge">2</span>
+              <div style="flex:1;">
+                <strong>Selfie Facial Ao Vivo</strong>
+                <p id="id-bio-status-text">Câmera ao vivo para prova de vida</p>
+              </div>
+              <button class="btn-soft btn-sm" id="btn-step-bio" onclick="document.getElementById('kyc-selfie-input').click()">
+                🤳 Tirar Selfie
+              </button>
+            </div>
+          </div>
+
+          <!-- PREVIEW DE IMAGENS CARREGADAS -->
+          <div id="kyc-preview-container" style="display:flex; gap:0.5rem; margin:0.75rem 0;">
+            <div id="kyc-doc-preview-slot" style="flex:1; height:85px; border-radius:12px; background:rgba(255,255,255,0.04); border:1px dashed var(--border-clean); display:flex; align-items:center; justify-content:center; overflow:hidden;">
+              <span style="font-size:0.72rem; color:var(--text-muted); text-align:center;">📄 Foto do RG</span>
+            </div>
+            <div id="kyc-selfie-preview-slot" style="flex:1; height:85px; border-radius:12px; background:rgba(255,255,255,0.04); border:1px dashed var(--border-clean); display:flex; align-items:center; justify-content:center; overflow:hidden;">
+              <span style="font-size:0.72rem; color:var(--text-muted); text-align:center;">🤳 Selfie de Rosto</span>
+            </div>
+          </div>
+
+          <!-- RADAR DE ANÁLISE BIOMÉTRICA (HUD) -->
+          <div id="kyc-scanning-hud" class="hidden" style="background:rgba(124,58,237,0.08); border:1px solid rgba(124,58,237,0.35); border-radius:14px; padding:0.85rem; margin-bottom:0.75rem;">
+            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem;">
+              <span class="spin-radar" style="font-size:1.1rem;">⚡</span>
+              <strong style="font-size:0.84rem; color:var(--accent-rose);">Motor de Biometria Neural em Execução...</strong>
+            </div>
+            <div id="kyc-progress-logs" style="font-family:monospace; font-size:0.75rem; color:var(--text-secondary); line-height:1.6;">
+              <div>[1/3] 🔍 Lendo documento e extraindo parâmetros OCR...</div>
+            </div>
+          </div>
+
+          <!-- BANNER DE RESULTADO -->
+          <div id="biometric-progress-box" class="ai-insight-banner hidden" style="margin-bottom:0.75rem;"></div>
+
+          <!-- BOTÕES DE AÇÃO -->
+          <button id="btn-run-auto-kyc" class="btn-primary-clean full-width" onclick="window.app.runAutomatedKycScan()">
+            ⚡ Iniciar Verificação Automática com IA
+          </button>
+          <button id="btn-finish-kyc" class="btn-primary-clean full-width hidden" style="background:#059669; border-color:#10B981; margin-top:0.4rem;" onclick="window.app.confirmIdentityVerification()">
+            ✓ Concluir & Ativar Cadastro
+          </button>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           MODAL 2: PUBLICAR STORY
+           ========================================================= -->
+      <div id="create-story-modal" class="sheet-overlay hidden" onclick="if(event.target===this) window.app.closeCreateStoryModal()">
+        <div class="bottom-sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-header">
+            <div>
+              <h3>📸 Novo Story (24h)</h3>
+            </div>
+            <button class="sheet-close" onclick="window.app.closeCreateStoryModal()">✕</button>
+          </div>
+
+          <input type="file" id="story-file-input" accept="image/*,video/*" class="hidden" onchange="window.app.handleStoryFileSelect(this)" />
+
+          <div class="story-upload-preview" id="story-upload-preview" onclick="document.getElementById('story-file-input').click()">
+            <img id="story-preview-img" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" alt="Preview Story" />
+            <video id="story-preview-video" class="hidden" muted loop playsinline></video>
+            <div class="story-upload-overlay-btn">📷 Escolher Foto ou Vídeo da Galeria</div>
+          </div>
+
+          <input
+            type="text"
+            id="new-story-caption"
+            class="clean-input"
+            style="margin-top:0.65rem;"
+            placeholder="Legenda do Story..."
+          />
+
+          <div class="sheet-footer">
+            <button class="btn-soft" onclick="window.app.closeCreateStoryModal()">Cancelar</button>
+            <button class="btn-primary-clean" onclick="window.app.publishNewStory()">Publicar Story</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           MODAL 3: VISUALIZADOR DE STORY ESTILO INSTAGRAM (DESLIZAR P/ LADOS + TOQUE NAS BORDAS)
+           ========================================================= -->
+      <div id="story-viewer-modal" class="sheet-overlay hidden" onclick="if(event.target===this) window.app.closeStory()">
+        <div class="story-fullscreen-viewer" id="story-viewer-card">
+          <img id="story-bg-media" class="story-bg-media" src="" alt="Story" />
+          <video id="story-bg-video" class="story-bg-media hidden" autoplay muted loop playsinline></video>
+          <div class="story-dark-gradient"></div>
+
+          <!-- Zonas de Toque Estilo Instagram (Esquerda = Anterior, Direita = Próximo) -->
+          <div class="insta-story-tap-left" onclick="window.app.stepStory(-1)" title="Story Anterior"></div>
+          <div class="insta-story-tap-right" onclick="window.app.stepStory(1)" title="Próximo Story"></div>
+
+          <div class="story-top-controls">
+            <div id="story-segments-row" class="photo-progress-bars" style="position:static; margin-bottom:0.65rem;"></div>
+            <div class="story-user-row" style="margin-top:0; color:white;">
+              <img id="story-avatar" src="" alt="Avatar" />
+              <div>
+                <strong id="story-username" style="color:white;"></strong>
+                <span style="color:#6EE7B7;">Deslize p/ o lado ↔ • Story 24h</span>
+              </div>
+              <button class="sheet-close" onclick="window.app.closeStory()">✕</button>
+            </div>
+          </div>
+
+          <button class="photo-nav-btn prev" onclick="window.app.stepStory(-1)">‹</button>
+          <button class="photo-nav-btn next" onclick="window.app.stepStory(1)">›</button>
+
+          <div class="story-bottom-controls">
+            <div class="story-caption-bubble" id="story-body-content"></div>
+            <div class="story-reply-bar">
+              <input
+                type="text"
+                id="story-reply-input"
+                placeholder="Responder ao Story..."
+                onkeydown="if(event.key==='Enter') window.app.replyStory()"
+              />
+              <button class="story-like-btn" id="story-like-btn" onclick="window.app.toggleLikeCurrentStory()">♥</button>
+              <button class="btn-primary-clean btn-sm" onclick="window.app.replyStory()">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           MODAL 4: PUBLICAR REEL
+           ========================================================= -->
+      <div id="create-reel-modal" class="sheet-overlay hidden" onclick="if(event.target===this) window.app.closeCreateReelModal()">
+        <div class="bottom-sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-header">
+            <div>
+              <h3>🎬 Publicar Reel</h3>
+            </div>
+            <button class="sheet-close" onclick="window.app.closeCreateReelModal()">✕</button>
+          </div>
+
+          <input type="file" id="reel-file-input" accept="video/*,image/*" class="hidden" onchange="window.app.handleReelFileSelect(this)" />
+
+          <div class="story-upload-preview" onclick="document.getElementById('reel-file-input').click()">
+            <img id="reel-preview-img" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Preview Reel" />
+            <video id="reel-preview-video" class="hidden" muted loop playsinline></video>
+            <div class="story-upload-overlay-btn">🎬 Escolher Vídeo ou Foto da Galeria</div>
+          </div>
+
+          <input type="text" id="new-reel-title" class="clean-input" style="margin-top:0.65rem;" placeholder="Legenda do seu Reel..." />
+          <select id="new-reel-category" class="clean-input" style="margin-top:0.45rem;">
+            <option value="Lifestyle">Lifestyle</option>
+            <option value="Shibari & Arte">Shibari & Arte</option>
+            <option value="Eventos & Festas">Eventos & Festas</option>
+            <option value="Dicas & Comunidade">Dicas & Comunidade</option>
+          </select>
+          <div class="sheet-footer">
+            <button class="btn-soft" onclick="window.app.closeCreateReelModal()">Cancelar</button>
+            <button class="btn-primary-clean" onclick="window.app.createReel()">Publicar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           MODAL 5: CHECKOUT PIX / CARTÃO
+           ========================================================= -->
+      <!-- =========================================================
+           MODAL 5: CHECKOUT REALISTA (PIX BCB & CARTÃO 3D SECURE)
+           ========================================================= -->
+      <div id="payment-checkout-modal" class="sheet-overlay hidden" onclick="if(event.target===this) window.app.closePaymentModal()">
+        <div class="bottom-sheet" style="max-height:88vh; overflow-y:auto;">
+          <div class="sheet-handle"></div>
+          <div class="sheet-header">
+            <div>
+              <h3 id="checkout-plan-title">Assinar Nexus Plus</h3>
+              <p id="checkout-plan-subtitle">Cobrança 100% discreta no extrato ("NXS TEC")</p>
+            </div>
+            <button class="sheet-close" onclick="window.app.closePaymentModal()">✕</button>
+          </div>
+
+          <div class="sheet-mode-tabs">
+            <button class="sheet-tab active" id="pay-tab-pix" onclick="window.app.setPaymentMethod('pix')">💠 PIX Instantâneo</button>
+            <button class="sheet-tab" id="pay-tab-card" onclick="window.app.setPaymentMethod('card')">💳 Cartão de Crédito</button>
+          </div>
+
+          <!-- PAINEL PIX -->
+          <div id="payment-pix-panel" class="payment-panel">
+            <div style="background:var(--bg-subtle); padding:0.65rem 0.85rem; border-radius:14px; border:1px solid var(--border-clean); display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <div>
+                <span style="font-size:0.7rem; color:var(--text-secondary);">Valor da Assinatura</span>
+                <div id="pix-price-tag" style="font-size:1.25rem; font-weight:800; color:var(--accent-rose);">R$ 15,00</div>
+              </div>
+              <div style="text-align:right;">
+                <span style="font-size:0.68rem; color:var(--text-secondary); display:block;">Expira em:</span>
+                <span id="pix-timer-display" style="font-size:0.88rem; font-weight:800; color:#10B981; font-family:monospace;">10:00</span>
+              </div>
+            </div>
+
+            <div class="pix-qr-box" style="padding:1rem; background:white; border-radius:16px; display:inline-block; margin:auto;">
+              <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; margin:auto;">
+                <rect width="150" height="150" fill="white"/>
+                <!-- Cantos QR -->
+                <rect x="10" y="10" width="35" height="35" rx="4" fill="#121114"/>
+                <rect x="15" y="15" width="25" height="25" rx="2" fill="white"/>
+                <rect x="20" y="20" width="15" height="15" rx="2" fill="#121114"/>
+
+                <rect x="105" y="10" width="35" height="35" rx="4" fill="#121114"/>
+                <rect x="110" y="15" width="25" height="25" rx="2" fill="white"/>
+                <rect x="115" y="20" width="15" height="15" rx="2" fill="#121114"/>
+
+                <rect x="10" y="105" width="35" height="35" rx="4" fill="#121114"/>
+                <rect x="15" y="110" width="25" height="25" rx="2" fill="white"/>
+                <rect x="20" y="115" width="15" height="15" rx="2" fill="#121114"/>
+
+                <!-- Padrão Central -->
+                <rect x="52" y="20" width="8" height="20" fill="#FF2E63"/>
+                <rect x="68" y="12" width="12" height="12" fill="#121114"/>
+                <rect x="88" y="22" width="8" height="18" fill="#121114"/>
+                <rect x="52" y="52" width="46" height="46" rx="8" fill="#FF2E63"/>
+                <text x="75" y="80" fill="white" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">NXS</text>
+                <rect x="12" y="58" width="14" height="8" fill="#121114"/>
+                <rect x="32" y="70" width="10" height="18" fill="#121114"/>
+                <rect x="108" y="58" width="28" height="8" fill="#121114"/>
+                <rect x="118" y="76" width="18" height="14" fill="#121114"/>
+                <rect x="52" y="110" width="22" height="12" fill="#121114"/>
+                <rect x="82" y="118" width="16" height="18" fill="#FF2E63"/>
+                <rect x="108" y="108" width="28" height="28" rx="4" fill="#121114"/>
+              </svg>
+              <p style="font-size:0.72rem; color:#64748B; margin:0.4rem 0 0; font-weight:600; text-align:center;">QR Code PIX Banco Central (SPI)</p>
+            </div>
+
+            <div style="margin:0.75rem 0 0.5rem;">
+              <label class="auth-label">Código PIX Copia-e-Cola</label>
+              <div style="display:flex; gap:0.4rem; margin-top:0.25rem;">
+                <input type="text" id="pix-code-input" class="clean-input" readonly value="00020126580014br.gov.bcb.pix0136nexus-kink-pay-live-2026520400005303986540515.005802BR5915NEXUS KINK APP6009SAO PAULO62070503***6304E8A2" style="font-size:0.72rem; font-family:monospace;" />
+                <button class="btn-soft btn-sm" style="white-space:nowrap;" onclick="window.app.copyPixKey()">📋 Copiar</button>
+              </div>
+            </div>
+
+            <div id="pix-checking-status" class="clean-card hidden" style="padding:0.65rem; margin-bottom:0.65rem; background:rgba(16,185,129,0.1); border:1px solid #10B981; text-align:center;">
+              <span style="font-size:0.8rem; font-weight:700; color:#10B981;">🔄 Consultando liquidação no Banco Central...</span>
+            </div>
+
+            <button id="btn-verify-pix" class="btn-primary-clean full-width" style="padding:0.85rem;" onclick="window.app.verifyPixPayment()">
+              ✓ Já Fiz o PIX / Verificar Pagamento
+            </button>
+            <p style="font-size:0.68rem; color:var(--text-secondary); text-align:center; margin-top:0.45rem;">
+              🔒 Liberação automática imediata após confirmação do Banco Central
+            </p>
+          </div>
+
+          <!-- PAINEL CARTÃO -->
+          <div id="payment-card-panel" class="payment-panel hidden">
+            <div style="background:var(--bg-subtle); padding:0.65rem 0.85rem; border-radius:14px; border:1px solid var(--border-clean); display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <div>
+                <span style="font-size:0.7rem; color:var(--text-secondary);">Total</span>
+                <div id="card-price-tag" style="font-size:1.25rem; font-weight:800; color:var(--accent-rose);">R$ 15,00</div>
+              </div>
+              <span class="pro-tag-inline" style="background:rgba(16,185,129,0.15); color:#10B981; border:1px solid #10B981;">3D Secure Ativo</span>
+            </div>
+
+            <label class="auth-label">Número do Cartão</label>
+            <input type="text" id="card-number-input" class="clean-input" placeholder="0000 0000 0000 0000" maxlength="19" oninput="window.app.formatCardNumber(this)" style="margin-bottom:0.55rem; font-family:monospace;" />
+
+            <div style="display:flex; gap:0.45rem; margin-bottom:0.55rem;">
+              <div style="flex:1;">
+                <label class="auth-label">Validade</label>
+                <input type="text" id="card-expiry-input" class="clean-input" placeholder="MM/AA" maxlength="5" oninput="window.app.formatCardExpiry(this)" />
+              </div>
+              <div style="flex:1;">
+                <label class="auth-label">CVV</label>
+                <input type="password" id="card-cvv-input" class="clean-input" placeholder="123" maxlength="4" />
+              </div>
+            </div>
+
+            <label class="auth-label">Nome Completo (como no Cartão)</label>
+            <input type="text" id="card-name-input" class="clean-input" placeholder="Ex: NOME COMO NO CARTÃO" style="margin-bottom:0.55rem; text-transform:uppercase;" />
+
+            <label class="auth-label">CPF do Titular</label>
+            <input type="text" id="card-cpf-input" class="clean-input" placeholder="000.000.000-00" maxlength="14" oninput="window.app.formatCPF(this)" style="margin-bottom:0.55rem;" />
+
+            <label class="auth-label">Parcelamento</label>
+            <select id="card-installments-select" class="clean-input" style="margin-bottom:0.8rem; padding:0.6rem;">
+              <option value="1">1x à vista sem juros</option>
+            </select>
+
+            <div id="card-processing-status" class="clean-card hidden" style="padding:0.65rem; margin-bottom:0.65rem; background:rgba(255,46,99,0.1); border:1px solid var(--accent-rose); text-align:center;">
+              <span style="font-size:0.8rem; font-weight:700; color:var(--accent-rose);">🔐 Processando autorização 3D Secure...</span>
+            </div>
+
+            <button id="btn-pay-card" class="btn-primary-clean full-width" style="padding:0.85rem;" onclick="window.app.processCardPayment()">
+              🔒 Pagar e Ativar Assinatura
+            </button>
+            <p style="font-size:0.68rem; color:var(--text-secondary); text-align:center; margin-top:0.45rem;">
+              🛡️ Criptografia TLS 256-bit • Dados protegidos e transação segura
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           MODAL 6: PERFIL DO CONTATO NO CHAT
+           ========================================================= -->
+      <div id="chat-contact-profile-modal" class="sheet-overlay hidden" onclick="if(event.target===this) window.app.closeChatContactProfile()">
+        <div class="bottom-sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-header">
+            <div>
+              <h3 id="chat-contact-modal-name">Perfil & Fotos</h3>
+            </div>
+            <button class="sheet-close" onclick="window.app.closeChatContactProfile()">✕</button>
+          </div>
+          <div id="chat-contact-modal-body" class="sheet-body"></div>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           MODAL 6.5: DETALHES COMPLETOS DO PERFIL & FOTOS PRIVADAS (DISCOVER)
+           ========================================================= -->
+      <div id="profile-details-modal" class="sheet-overlay hidden" onclick="if(event.target===this) window.app.closeProfileDetailsModal()">
+        <div class="bottom-sheet profile-detail-sheet" style="max-height: 88vh; overflow-y: auto;">
+          <div class="sheet-handle"></div>
+          <div class="sheet-header" style="position: sticky; top: 0; background: var(--bg-surface); z-index: 10; padding-bottom: 0.5rem;">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <img id="detail-modal-avatar" src="" style="width:44px; height:44px; border-radius:50%; object-fit:cover; border:2px solid var(--accent-rose);" />
+              <div>
+                <h3 id="detail-modal-name" style="margin:0; font-size:1.05rem;">Perfil</h3>
+                <span id="detail-modal-badges" style="font-size:0.75rem; color:var(--text-secondary);"></span>
+              </div>
+            </div>
+            <button class="sheet-close" onclick="window.app.closeProfileDetailsModal()">✕</button>
+          </div>
+          <div id="profile-details-modal-body" class="sheet-body"></div>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           MODAL 7: FILTROS & GOSTOS (CLEAN, DIRETO E COM 50+ OPÇÕES)
+           ========================================================= -->
+      <div id="my-labels-modal" class="sheet-overlay hidden" onclick="if(event.target===this) window.app.closeLabelsSheet()">
+        <div class="bottom-sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-header">
+            <div>
+              <h3>⚡ Filtros & Gostos</h3>
+            </div>
+            <button class="sheet-close" onclick="window.app.closeLabelsSheet()">✕</button>
+          </div>
+
+          <div class="sheet-mode-tabs">
+            <button class="sheet-tab active" id="sheet-tab-filter" onclick="window.app.setSheetMode('filter')">🔍 Filtrar Busca</button>
+            <button class="sheet-tab" id="sheet-tab-mine" onclick="window.app.setSheetMode('mine')">🔥 Meus Gostos (<span id="my-labels-count">7</span>)</button>
+          </div>
+
+          <div id="sheet-Filter-content" class="sheet-body">
+            <div class="distance-filter-box">
+              <div class="distance-row-top">
+                <strong>📍 Distância</strong>
+                <span class="distance-value-pill"><span id="distance-slider-val">25</span> km</span>
+              </div>
+              <input
+                type="range"
+                id="distance-range-slider"
+                min="1"
+                max="50"
+                value="25"
+                class="clean-slider"
+                oninput="window.app.updateDistanceFilter(this.value)"
+              />
+              <div class="distance-sub-actions">
+                <button class="btn-soft btn-sm" onclick="window.app.detectRealGPS()">📡 Usar Meu GPS</button>
+                <label class="clean-checkbox-row" style="margin:0;">
+                  <input type="checkbox" id="filter-crossed-paths" onchange="window.app.applyFilters()" />
+                  <span>⚡ Mesma rua <em class="pro-tag-inline">Plus</em></span>
+                </label>
+              </div>
+
+              <label class="clean-checkbox-row" style="margin-top:0.5rem;">
+                <input type="checkbox" id="filter-verified" onchange="window.app.applyFilters()" />
+                <span>✓ Apenas perfis verificados</span>
+              </label>
+            </div>
+
+            <div class="sheet-section">
+              <div class="sheet-section-title">💍 Status de Relacionamento</div>
+              <div id="discover-relationship-filters" class="chips-cloud"></div>
+            </div>
+
+            <div class="sheet-section">
+              <div class="sheet-section-title">🏷️ Papel</div>
+              <div id="discover-role-filters" class="chips-cloud"></div>
+            </div>
+
+            <div class="sheet-section">
+              <div class="sheet-section-title">🔥 Práticas & Gostos BDSM (★ = Você curte)</div>
+              <div id="discover-interest-filters" class="chips-cloud"></div>
+            </div>
+
+            <div class="sheet-footer">
+              <button class="btn-soft" onclick="window.app.clearLabelFilters()">Limpar</button>
+              <button class="btn-primary-clean" onclick="window.app.closeLabelsSheet()">Ver Perfis (<span id="sheet-match-count">5</span>)</button>
+            </div>
+          </div>
+
+          <div id="sheet-mine-content" class="sheet-body hidden">
+            <div class="sheet-section">
+              <div class="sheet-section-title">💍 Meu Status de Relacionamento</div>
+              <div id="modal-my-relationship" class="chips-cloud"></div>
+            </div>
+            <div class="sheet-section">
+              <div class="sheet-section-title">🏷️ Meu Papel</div>
+              <div id="modal-my-roles" class="chips-cloud"></div>
+            </div>
+            <div class="sheet-section">
+              <div class="sheet-section-title">🔥 Minhas Práticas & Gostos</div>
+              <div id="modal-my-interests" class="chips-cloud"></div>
+            </div>
+            <div class="add-custom-row">
+              <input type="text" id="custom-label-input" class="clean-input" placeholder="Novo gosto..." />
+              <button class="btn-primary-clean btn-sm" onclick="window.app.addCustomLabel()">+ Criar</button>
+            </div>
+            <div class="sheet-footer">
+              <button class="btn-soft" onclick="window.app.applyMyLabelsAsFilter()">Filtrar pelos Meus</button>
+              <button class="btn-primary-clean" onclick="window.app.closeLabelsSheet()">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL: INSTALAR APLICATIVO NATIVO & COMPARTILHAMENTO (SEM QR CODE) -->
+      <div id="install-app-modal" class="sheet-overlay hidden" onclick="if(event.target===this) window.app.closeInstallAppModal()">
+        <div class="bottom-sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-header">
+            <div>
+              <h3>📲 Instalar Nexus Kink</h3>
+              <p>App nativo com atualizações automáticas em tempo real</p>
+            </div>
+            <button class="sheet-close" onclick="window.app.closeInstallAppModal()">✕</button>
+          </div>
+          <div class="sheet-body" style="display:flex; flex-direction:column; gap:0.75rem;">
+            <div class="clean-card" style="background:var(--accent-rose-soft); border-color:var(--accent-rose); text-align:center; padding:1.1rem 0.9rem;">
+              <div style="font-size:2.2rem; margin-bottom:0.3rem;">📲</div>
+              <strong style="font-size:0.95rem; display:block; margin-bottom:0.3rem;">Instalar no seu Aparelho</strong>
+              <p style="font-size:0.76rem; color:var(--text-secondary); margin-bottom:0.85rem; line-height:1.4;">
+                Toque no botão abaixo para instalar diretamente na sua tela inicial sem necessidade de loja de aplicativos.
+              </p>
+              <button class="btn-primary-clean full-width" style="padding:0.9rem; font-size:0.95rem; font-weight:800;" onclick="window.app.triggerNativeInstall()">
+                📲 Instalar Aplicativo Agora
+              </button>
+            </div>
+
+            <div class="clean-card" style="padding:0.85rem;">
+              <label class="auth-label" style="margin-bottom:0.35rem; display:block;">Link Direto do App</label>
+              <input type="text" id="cloud-url-input" class="clean-input" readonly value="Carregando link..." style="text-align:center; font-weight:700; font-size:0.78rem; margin-bottom:0.55rem;" />
+              <button class="btn-soft full-width btn-sm" style="margin-bottom:0.6rem;" onclick="window.app.copyCloudUrl()">
+                📋 Copiar Link do App
+              </button>
+
+              <div style="border-top:1px solid var(--border-clean); padding-top:0.65rem;">
+                <span style="font-size:0.72rem; color:var(--text-secondary); display:block; margin-bottom:0.4rem; text-align:center;">Compartilhar com contatos:</span>
+                <div style="display:flex; gap:0.45rem;">
+                  <button class="btn-soft full-width btn-sm" style="color:#25D366; font-weight:800; border-color:rgba(37,211,102,0.3);" onclick="window.app.shareOnWhatsApp()">
+                    💬 WhatsApp
+                  </button>
+                  <button class="btn-soft full-width btn-sm" style="color:#0088cc; font-weight:800; border-color:rgba(0,136,204,0.3);" onclick="window.app.shareOnTelegram()">
+                    ✈️ Telegram
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL: SUPERESTRELA 🌟 -->
+      <div id="superstar-modal" class="sheet-overlay hidden" onclick="if(event.target===this) window.app.closeSuperstarModal()">
+        <div class="bottom-sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-header">
+            <div>
+              <h3>🌟 Superestrela</h3>
+              <p id="superstar-target-subtitle">Mande mensagem direta agora sem esperar Match!</p>
+            </div>
+            <button class="sheet-close" onclick="window.app.closeSuperstarModal()">✕</button>
+          </div>
+          <textarea
+            id="superstar-message-input"
+            class="clean-textarea"
+            rows="3"
+            placeholder="Escreva sua mensagem para abrir o chat..."
+          ></textarea>
+          <div class="sheet-footer">
+            <button class="btn-soft" onclick="window.app.closeSuperstarModal()">Cancelar</button>
+            <button class="btn-primary-clean" onclick="window.app.confirmSendSuperstar()">🌟 Enviar & Abrir Chat</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL: UPGRADE DE PLANOS -->
+      <div id="upgrade-modal" class="sheet-overlay hidden" onclick="if(event.target===this) window.app.closeUpgradeSheet()">
+        <div class="bottom-sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-header">
+            <div>
+              <h3>💎 Nexus Plus & Black</h3>
+              <p>Estrelas, Superestrelas, Radar de Rua e IA</p>
+            </div>
+            <button class="sheet-close" onclick="window.app.closeUpgradeSheet()">✕</button>
+          </div>
+          <div id="modal-plans-list" class="plans-stack"></div>
+        </div>
+      </div>
+
+      <!-- MODAL: CELEBRAÇÃO DE MATCH -->
+      <div id="match-celebration-modal" class="sheet-overlay hidden" onclick="if(event.target===this) window.app.closeMatchModal()">
+        <div class="story-card-mobile" style="text-align:center; justify-content:center; gap:0.85rem;">
+          <div style="font-size:2.6rem;">🔥</div>
+          <h2 style="font-size:1.85rem; font-weight:800; color:var(--accent-rose);">Deu Match!</h2>
+          <p id="match-modal-text" style="font-size:0.84rem; color:var(--text-secondary);"></p>
+          <div style="display:flex; gap:0.5rem; margin-top:0.4rem;">
+            <button class="btn-soft full-width" onclick="window.app.closeMatchModal()">Continuar</button>
+            <button class="btn-primary-clean full-width" id="match-open-chat-btn">Abrir Chat 💬</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIGHTBOX DE FOTO -->
+      <div id="photo-lightbox-modal" class="sheet-overlay hidden" onclick="window.app.closePhotoLightbox()">
+        <div class="lightbox-container" onclick="event.stopPropagation()">
+          <button class="sheet-close lightbox-close" onclick="window.app.closePhotoLightbox()">✕</button>
+          <img id="lightbox-img" src="" alt="Foto Ampliada" />
+          <p id="lightbox-caption" style="color:white; text-align:center; font-size:0.8rem; margin-top:0.6rem;"></p>
+        </div>
+      </div>
+
+      <!-- MODO DISCRETO (MINIMALISTA, ELEGANTE E TOTALMENTE DISCRETO) -->
+      <div id="privacy-lock-modal" class="full-privacy-screen hidden" onclick="window.app.togglePrivacyLock(false)" title="Toque para retornar">
+        <div class="privacy-discreet-wrapper">
+          <div class="privacy-discreet-clock" id="privacy-discreet-clock">22:30</div>
+          <div class="privacy-discreet-date" id="privacy-discreet-date">Segunda-feira, 19 de Outubro</div>
+          <div class="privacy-discreet-hint">
+            <span class="privacy-pulse-dot"></span>
+            Toque na tela para voltar ao app
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast Mobile -->
+      <div id="toast-container" class="mobile-toast-container"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

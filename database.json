@@ -1,0 +1,391 @@
+{
+  "schemaVersion": 4,
+  "updatedAt": 1792626366058,
+  "relationships": [
+    "Solteiro(a)",
+    "Casado(a)",
+    "Namorando",
+    "Relacionamento Aberto",
+    "Casal Liberal",
+    "Poliamor",
+    "Divorciado(a)",
+    "Amizade Colorida",
+    "Só Encontros",
+    "Trisal"
+  ],
+  "roles": [
+    "Dom",
+    "Master",
+    "Mistress",
+    "Soberano",
+    "Dama",
+    "Rigger",
+    "Top",
+    "Mentor",
+    "Protetor",
+    "Switch",
+    "Primal",
+    "Versátil",
+    "Sub",
+    "Bottom",
+    "Brat",
+    "Pet",
+    "Servil",
+    "Casal",
+    "Liberal",
+    "Curioso",
+    "Experiente"
+  ],
+  "interests": [
+    "Dominação",
+    "Liderança",
+    "Comando",
+    "Autoridade",
+    "Controle",
+    "Hierarquia",
+    "Protocolo",
+    "Ordens",
+    "Submissão",
+    "Obediência",
+    "Devoção",
+    "Servidão",
+    "Entrega",
+    "Disciplina",
+    "Regras",
+    "Treinamento",
+    "Castigo",
+    "Recompensa",
+    "Castidade",
+    "Chaveiro",
+    "Negação",
+    "Provocação",
+    "Mindplay",
+    "Hipnose",
+    "Shibari",
+    "Kinbaku",
+    "Cordas",
+    "Amarração",
+    "Suspensão",
+    "Algemas",
+    "Correntes",
+    "Imobilização",
+    "Restrição",
+    "Mordaça",
+    "Vendas",
+    "Capuz",
+    "Gaiola",
+    "Coleira",
+    "Impacto",
+    "Chibata",
+    "Flogger",
+    "Paddle",
+    "Cinta",
+    "Palmada",
+    "Mordida",
+    "Garras",
+    "Intensidade",
+    "Arrepio",
+    "Temperatura",
+    "Gelo",
+    "Vela",
+    "Fogo",
+    "Eletro",
+    "Sensorial",
+    "Plumas",
+    "Massagem",
+    "Tântrico",
+    "Roleplay",
+    "Fantasia",
+    "Primal",
+    "Caça",
+    "Luta",
+    "Petplay",
+    "Kitten",
+    "Puppy",
+    "Uniforme",
+    "Couro",
+    "Látex",
+    "Vinil",
+    "Corset",
+    "Arnês",
+    "Lingerie",
+    "Máscara",
+    "Cuckold",
+    "Hotwife",
+    "Swing",
+    "Ménage",
+    "Observador",
+    "Dungeon",
+    "Munch",
+    "Festas",
+    "Aftercare",
+    "Pés",
+    "Trample"
+  ],
+  "users": [
+    {
+      "id": "u_1e8b98fb99b94e44ac",
+      "email": "teste.1792455969@nexus.app",
+      "passwordHash": "1242eccc532f9390741ede76d5498723:b75e4fe51345e0584b36cadcc02edc66fcee9066bcdaf8665f00023fe17e1fec7566ed2f09c1ae7b1085b038b0b4dd476927bfdedcc94c6dcfb2cf0d50db696d",
+      "googleSub": null,
+      "name": "Marina S.",
+      "birthDate": "1998-05-14",
+      "age": 28,
+      "pronouns": "Ele/Dele",
+      "relationship": "Relacionamento Aberto",
+      "role": "Switch",
+      "roles": [
+        "Switch",
+        "Rigger"
+      ],
+      "interests": [
+        "Shibari",
+        "Cordas",
+        "Aftercare"
+      ],
+      "bio": "Amante de shibari e pr�ticas sensoriais consentidas.",
+      "city": "São Paulo, SP",
+      "lat": -23.5615,
+      "lon": -46.6623,
+      "avatar": "/uploads/pub-c08f616542c54dcab941.png",
+      "photos": [
+        {
+          "url": "/uploads/pub-c08f616542c54dcab941.png"
+        },
+        {
+          "url": "/uploads/pub-07849ffb51fc1f8add0d.png"
+        }
+      ],
+      "privatePhotos": [],
+      "status": "active",
+      "plan": "black",
+      "planExpiresAt": 1795047971760,
+      "kyc": {
+        "docUrl": "/uploads/kycdoc-672e8fb0a173b86b9004.png",
+        "selfieUrl": "/uploads/kycselfie-112ab784a9bbc27eda7d.png",
+        "score": 96.8,
+        "submittedAt": 1792455971729,
+        "autoApproved": true
+      },
+      "createdAt": 1792455971729,
+      "lastSeenAt": 1792455971760
+    },
+    {
+      "id": "u_a42d2eeb7870745059",
+      "email": "teste.1792455950@nexus.app",
+      "passwordHash": "7d84fb0502845dc4fdd24789a8df132f:c6091bcf2d2e254a0ce48193fa73c93daeef8dc6725b3164bf247b27958684505f21de6adbe9a7293ac27eece9d9b6977a421c8b1ce82ad9d89bb52cde030448",
+      "googleSub": null,
+      "name": "Marina S.",
+      "birthDate": "1998-05-14",
+      "age": 28,
+      "pronouns": "Ele/Dele",
+      "relationship": "Relacionamento Aberto",
+      "role": "Switch",
+      "roles": [
+        "Switch",
+        "Rigger"
+      ],
+      "interests": [
+        "Shibari",
+        "Cordas",
+        "Aftercare"
+      ],
+      "bio": "Amante de shibari e pr�ticas sensoriais consentidas.",
+      "city": "São Paulo, SP",
+      "lat": -23.5615,
+      "lon": -46.6623,
+      "avatar": "/uploads/pub-960ffe1d0e884aa0d088.png",
+      "photos": [
+        {
+          "url": "/uploads/pub-960ffe1d0e884aa0d088.png"
+        },
+        {
+          "url": "/uploads/pub-91f09e73c1c71ff9eba9.png"
+        }
+      ],
+      "privatePhotos": [],
+      "status": "active",
+      "plan": "black",
+      "planExpiresAt": 1795047952647,
+      "kyc": {
+        "docUrl": "/uploads/kycdoc-5401b7aa7cf34004c4bb.png",
+        "selfieUrl": "/uploads/kycselfie-a5b742525562bdb56c92.png",
+        "score": 96.8,
+        "submittedAt": 1792455952588,
+        "autoApproved": true
+      },
+      "createdAt": 1792455952588,
+      "lastSeenAt": 1792455952647
+    },
+    {
+      "id": "u_49a46bd3317d233cf3",
+      "email": "marina.bdsm@teste.com",
+      "passwordHash": "5ced7b17c9ba5a0f5372ec8d148ff1b2:798d05cc386f336f569bc47e52727c55b8c1b249f63e0c06ffd86f6fd2328a0fd241c7081a31662aedfc59426a81a7a27a9e0a2b1de74caacf072d8374f716f5",
+      "googleSub": null,
+      "name": "Marina S.",
+      "birthDate": "1998-05-14",
+      "age": 28,
+      "pronouns": "Ele/Dele",
+      "relationship": "Relacionamento Aberto",
+      "role": "Switch",
+      "roles": [
+        "Switch",
+        "Rigger"
+      ],
+      "interests": [
+        "Shibari",
+        "Cordas",
+        "Aftercare"
+      ],
+      "bio": "Amante de shibari e pr�ticas sensoriais consentidas.",
+      "city": "São Paulo, SP",
+      "lat": -23.5615,
+      "lon": -46.6623,
+      "avatar": "/uploads/pub-5ef6a81e3245e6bc14fa.png",
+      "photos": [
+        {
+          "url": "/uploads/pub-5ef6a81e3245e6bc14fa.png"
+        },
+        {
+          "url": "/uploads/pub-a18c1cdd0ab494fb241c.png"
+        }
+      ],
+      "privatePhotos": [],
+      "status": "active",
+      "plan": "free",
+      "planExpiresAt": null,
+      "kyc": {
+        "docUrl": "/uploads/kycdoc-c9f9b87c7f2a3408e638.png",
+        "selfieUrl": "/uploads/kycselfie-adbc54ef769bf956c5ad.png",
+        "score": 96.8,
+        "submittedAt": 1792455858794,
+        "autoApproved": true
+      },
+      "createdAt": 1792455858794,
+      "lastSeenAt": 1792455858852
+    }
+  ],
+  "sessions": {
+    "583eaa981f0d46b5c6f42191ba96e53efb112b4421d6ad6695f99dd6beb508fe": {
+      "userId": "u_49a46bd3317d233cf3",
+      "createdAt": 1792455858817
+    },
+    "ca0b2de120123789196a9f129ebd5fbc85ed6ea27cddadb91b9d1738a9cc25c6": {
+      "userId": "u_a42d2eeb7870745059",
+      "createdAt": 1792455952610
+    },
+    "de3e16cc08a13b2ed7c8368f296d52805fdb11b089796f9ad8d4bd5a1f90dc8f": {
+      "userId": "u_1e8b98fb99b94e44ac",
+      "createdAt": 1792455971729
+    },
+    "d8fc97fbfc4268df22d9acd7f440753038ec626201564aafc4aab5566223074a": {
+      "userId": "u_1e8b98fb99b94e44ac",
+      "createdAt": 1792455971826
+    }
+  },
+  "kycQueue": [
+    {
+      "id": "kyc_16b4b5b1c3b29c7060",
+      "userId": "u_1e8b98fb99b94e44ac",
+      "name": "Marina Souza",
+      "age": 28,
+      "role": "Switch",
+      "city": "São Paulo, SP",
+      "docType": "RG/CNH",
+      "docUrl": "/uploads/kycdoc-672e8fb0a173b86b9004.png",
+      "selfieUrl": "/uploads/kycselfie-112ab784a9bbc27eda7d.png",
+      "avatar": "/uploads/pub-c08f616542c54dcab941.png",
+      "submittedAt": "19/10/2026, 21:26:11",
+      "status": "approved",
+      "verifiedBy": "IA Biometria Neural (Automático)",
+      "score": 96.8
+    },
+    {
+      "id": "kyc_f6cdc245a7f78e9df8",
+      "userId": "u_a42d2eeb7870745059",
+      "name": "Marina Souza",
+      "age": 28,
+      "role": "Switch",
+      "city": "São Paulo, SP",
+      "docType": "RG/CNH",
+      "docUrl": "/uploads/kycdoc-5401b7aa7cf34004c4bb.png",
+      "selfieUrl": "/uploads/kycselfie-a5b742525562bdb56c92.png",
+      "avatar": "/uploads/pub-960ffe1d0e884aa0d088.png",
+      "submittedAt": "19/10/2026, 21:25:52",
+      "status": "approved",
+      "verifiedBy": "IA Biometria Neural (Automático)",
+      "score": 96.8
+    },
+    {
+      "id": "kyc_428a90c19cbaeff6e6",
+      "userId": "u_49a46bd3317d233cf3",
+      "name": "Marina Souza",
+      "age": 28,
+      "role": "Switch",
+      "city": "São Paulo, SP",
+      "docType": "RG/CNH",
+      "docUrl": "/uploads/kycdoc-c9f9b87c7f2a3408e638.png",
+      "selfieUrl": "/uploads/kycselfie-adbc54ef769bf956c5ad.png",
+      "avatar": "/uploads/pub-5ef6a81e3245e6bc14fa.png",
+      "submittedAt": "19/10/2026, 21:24:18",
+      "status": "approved",
+      "verifiedBy": "IA Biometria Neural (Automático)",
+      "score": 96.8
+    }
+  ],
+  "likes": [],
+  "payments": [
+    {
+      "ref": "nexus:u_1e8b98fb99b94e44ac:black:0daeb5caa1a2",
+      "userId": "u_1e8b98fb99b94e44ac",
+      "planId": "black",
+      "method": "pix",
+      "createdAt": 1792455971757,
+      "applied": true,
+      "mpStatus": "approved",
+      "mpPaymentId": "SIM-1792455971760",
+      "appliedAt": 1792455971760
+    },
+    {
+      "ref": "nexus:u_a42d2eeb7870745059:black:37b3ca3b63bb",
+      "userId": "u_a42d2eeb7870745059",
+      "planId": "black",
+      "method": "pix",
+      "createdAt": 1792455952644,
+      "applied": true,
+      "mpStatus": "approved",
+      "mpPaymentId": "SIM-1792455952647",
+      "appliedAt": 1792455952647
+    },
+    {
+      "ref": "nexus:u_49a46bd3317d233cf3:black:7642b2d42582",
+      "userId": "u_49a46bd3317d233cf3",
+      "planId": "black",
+      "method": "pix",
+      "createdAt": 1792455858848,
+      "applied": false
+    }
+  ],
+  "transactions": [
+    {
+      "id": "TX-SIM-1792455971760",
+      "user": "Marina S.",
+      "userId": "u_1e8b98fb99b94e44ac",
+      "plan": "Nexus Black VIP",
+      "amount": 24.99,
+      "method": "PIX (Mercado Pago)",
+      "status": "Pago",
+      "time": "19/10/2026, 21:26:11"
+    },
+    {
+      "id": "TX-SIM-1792455952647",
+      "user": "Marina S.",
+      "userId": "u_a42d2eeb7870745059",
+      "plan": "Nexus Black VIP",
+      "amount": 24.99,
+      "method": "PIX (Mercado Pago)",
+      "status": "Pago",
+      "time": "19/10/2026, 21:25:52"
+    }
+  ]
+}
